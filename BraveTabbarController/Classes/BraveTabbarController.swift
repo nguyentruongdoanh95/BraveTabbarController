@@ -68,7 +68,6 @@ open class BraveTabbarController: UIViewController {
             self.view.isUserInteractionEnabled = true
         })
         
-        print("nguyentruongdoanhxxx")
         guard let newIndex: Int = tabButtons?.firstIndex(of: button) else { return }
         let shouldSelect: Bool = delegate?.tabBarController?(self, shouldSelectAtIndex: newIndex) ?? true
         guard shouldSelect == true else { return }
