@@ -38,6 +38,11 @@ open class BraveTabbarController: UIViewController {
     }
     
     /**
+     Time delay action button.
+     */
+    public var timeDelayActionButon: Double = 0.0
+    
+    /**
      The tab bar controller’s delegate object.
      */
     public weak var delegate: BraveTabbarControllerDelegate?
@@ -57,6 +62,13 @@ open class BraveTabbarController: UIViewController {
      Event when click on tab item.
      */
     @objc open func onTabClick(_ button: UIButton) {
+        self.view.isUserInteractionEnabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + self.timeDelayActionButon, execute: {
+            self.view.isUserInteractionEnabled = true
+        })
+        
+        print("nguyentruongdoanhxxx")
         guard let newIndex: Int = tabButtons?.firstIndex(of: button) else { return }
         let shouldSelect: Bool = delegate?.tabBarController?(self, shouldSelectAtIndex: newIndex) ?? true
         guard shouldSelect == true else { return }
